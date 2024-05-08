@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet"> -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <title>Login</title>  
+  <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    .login-container {
+        width: 300px;
+        margin: auto;
+        text-align: center;
+        margin-top: 50px;
+    }
+    input[type="text"], input[type="password"], input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    .social-login {
+        margin-top: 20px;
+    }
+    .social-login button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .signup-link {
+        margin-top: 20px;
+        text-align: left;
+    }
+    .signup-link a {
+        text-decoration: none;
+        color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Login</h2>
+  <form>
+    <input type="text" placeholder="Username" name="username" required>
+    <input type="password" placeholder="Password" name="password" required>
+    <input type="submit" value="Login">
+  </form>
+  <div class="social-login">
+    <button onclick="kakaoLogin()">Login with Kakao</button>
+  </div>
+  <div class="signup-link">
+    <p>Don't have an account? <a href="signup.html">Sign up</a> or sign up with Kakao</p>
+  </div>
+</div>
+
+<script>
+  function kakaoLogin() {
+    // Add your Kakao login logic here
+    alert("Kakao login clicked.");
+  }
+</script>
+
+</body>
+</html>

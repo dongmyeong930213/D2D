@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet"> -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <title>D2D</title>  
+  <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        text-align: center; /* Center align the contents */
+    }
+    .navbar .brand {
+        padding: 14px 20px;
+        color: #f2f2f2;
+        font-size: 20px;
+        display: inline-block; /* Make it an inline-block to center */
+        margin: auto; /* Center the brand horizontally */
+    }
+    .navbar a {
+        display: block; /* Change to block for vertical alignment */
+        color: #f2f2f2;
+        text-decoration: none;
+        padding: 14px 20px;
+    }
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .navbar a.login {
+        float: right; /* Align login link to the right */
+    }
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    th, td {
+        border: 1px solid black;
+        text-align: center;
+        padding: 10px;
+        cursor: pointer; /* Add cursor pointer to indicate clickable */
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    td {
+        height: 100px;
+    }
+    .memo-form {
+        display: none; /* Initially hide the form */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+  <a href="login.html" class="login">Login</a> <!-- Add login link -->
+  <div class="brand">D2D</div> <!-- Move "D2D" inside navbar -->
+</div>
+
+<h2 id="dateHeader">2024년 5월</h2>
+
+<table id="calendar">
+<thead>
+<tr>
+  <th>일</th>
+  <th>월</th>
+  <th>화</th>
+  <th>수</th>
+  <th>목</th>
+  <th>금</th>
+  <th>토</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td onclick="showMemoForm('D-Day')">1</td>
+  <td onclick="showMemoForm('D-Day')">2</td>
+  <td onclick="showMemoForm('D-Day')">3</td>
+  <td onclick="showMemoForm('D-Day')">4</td>
+</tr>
+<tr>
+  <td onclick="showMemoForm('Schedule')">5</td>
+  <td onclick="showMemoForm('Schedule')">6</td>
+  <td onclick="showMemoForm('Schedule')">7</td>
+  <td onclick="showMemoForm('Schedule')">8</td>
+  <td onclick="showMemoForm('Schedule')">9</td>
+  <td onclick="showMemoForm('Schedule')">10</td>
+  <td onclick="showMemoForm('Schedule')">11</td>
+</tr>
+<tr>
+  <td onclick="showMemoForm('TODO')">12</td>
+  <td onclick="showMemoForm('TODO')">13</td>
+  <td onclick="showMemoForm('TODO')">14</td>
+  <td onclick="showMemoForm('TODO')">15</td>
+  <td onclick="showMemoForm('TODO')">16</td>
+  <td onclick="showMemoForm('TODO')">17</td>
+  <td onclick="showMemoForm('TODO')">18</td>
+</tr>
+<tr>
+  <td onclick="showMemoForm('Schedule')">19</td>
+  <td onclick="showMemoForm('Schedule')">20</td>
+  <td onclick="showMemoForm('Schedule')">21</td>
+  <td onclick="showMemoForm('Schedule')">22</td>
+  <td onclick="showMemoForm('Schedule')">23</td>
+  <td onclick="showMemoForm('Schedule')">24</td>
+  <td onclick="showMemoForm('Schedule')">25</td>
+</tr>
+<tr>
+  <td onclick="showMemoForm('Schedule')">26</td>
+  <td onclick="showMemoForm('Schedule')">27</td>
+  <td onclick="showMemoForm('Schedule')">28</td>
+  <td onclick="showMemoForm('Schedule')">29</td>
+  <td onclick="showMemoForm('Schedule')">30</td>
+  <td onclick="showMemoForm('Schedule')">31</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+
+<!-- Memo Form -->
+<div class="memo-form" id="memoForm">
+    <span class="close-btn" onclick="closeMemoForm()">&times;</span>
+    <h3 id="memoType"></h3>
+    <form>
+        <input type="radio" id="dDay" name="memoType" value="D-Day" checked>
+        <label for="dDay">D-Day</label>
+        <input type="radio" id="schedule" name="memoType" value="Schedule">
+        <label for="schedule">일정</label>
+        <input type="radio" id="todo" name="memoType" value="TODO">
+        <label for="todo">TODO</label><br>
+        <label for="memoTitle">제목:</label><br>
+        <input type="text" id="memoTitle" name="memoTitle"><br>
+        <label for="memoContent">내용:</label><br>
+        <textarea id="memoContent" name="memoContent" rows="4"></textarea><br>
+        <input type="submit" value="등록하기">
+    </form>
+</div>
+
+<script>
+    function showMemoForm(memoType) {
+        document.getElementById('memoType').innerText = memoType;
+        document.getElementById('memoForm').style.display = 'block';
+    }
+
+    function closeMemoForm() {
+        document.getElementById('memoForm').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
